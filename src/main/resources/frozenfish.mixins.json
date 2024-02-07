@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.plr.frozenfish.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "frozenfish.refmap.json",
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

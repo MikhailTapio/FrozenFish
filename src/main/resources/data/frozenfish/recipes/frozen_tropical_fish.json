@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:ice"
+    },
+    {
+      "item": "minecraft:tropical_fish"
+    }
+  ],
+  "result": {
+    "item": "frozenfish:frozen_tropical_fish"
+  }
+}
