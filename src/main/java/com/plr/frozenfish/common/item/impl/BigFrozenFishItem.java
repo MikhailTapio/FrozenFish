@@ -9,7 +9,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -23,7 +22,7 @@ public class BigFrozenFishItem extends AxeItem implements IFrozenFish {
     private final ItemStack original;
 
     public BigFrozenFishItem(ItemStack original) {
-        super(FrozenFishTier.INSTANCE, 5.0F, -3.4F, new Properties().tab(CreativeModeTab.TAB_COMBAT));
+        super(FrozenFishTier.INSTANCE, 5.0F, -3.4F, new Properties());
         this.original = original;
     }
 

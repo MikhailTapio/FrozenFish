@@ -8,7 +8,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.context.UseOnContext;
@@ -23,7 +22,7 @@ public class SmallFrozenFishItem extends SwordItem implements IFrozenFish {
     private final ItemStack original;
 
     public SmallFrozenFishItem(ItemStack original) {
-        super(FrozenFishTier.INSTANCE, 3, -2.8F, new Properties().tab(CreativeModeTab.TAB_COMBAT));
+        super(FrozenFishTier.INSTANCE, 3, -2.8F, new Properties());
         this.original = original;
     }
 

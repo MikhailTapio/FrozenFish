@@ -21,7 +21,7 @@ public interface IFrozenFish {
     ItemStack getOriginalFishStack();
 
     default boolean willConsumeNaturally(Biome biome, BlockPos pos) {
-        return biome.shouldSnowGolemBurn(pos);
+        return biome.warmEnoughToRain(pos);
     }
 
     default boolean willRecoverNaturally(Biome biome, BlockPos pos) {
@@ -45,10 +45,10 @@ public interface IFrozenFish {
     }
 
     default void dropDefrosted(LivingEntity e) {
-        final ItemEntity ie = new ItemEntity(e.level, e.getX(), e.getY(), e.getZ(), getOriginalFishStack());
-        e.level.playSound(null, e.getX(), e.getY(), e.getZ(),
+        final ItemEntity ie = new ItemEntity(e.level(), e.getX(), e.getY(), e.getZ(), getOriginalFishStack());
+        e.level().playSound(null, e.getX(), e.getY(), e.getZ(),
                 SoundEvents.GLASS_BREAK, SoundSource.NEUTRAL, 1.0F, .6F + ThreadLocalRandom.current().nextFloat(.6F));
-        e.level.addFreshEntity(ie);
+        e.level().addFreshEntity(ie);
     }
 
     default void tick(Level level, Entity entity, ItemStack stack) {
