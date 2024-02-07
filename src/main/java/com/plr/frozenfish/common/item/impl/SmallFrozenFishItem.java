@@ -5,7 +5,6 @@ import com.plr.frozenfish.common.item.tier.FrozenFishTier;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -55,7 +54,7 @@ public class SmallFrozenFishItem extends SwordItem implements IFrozenFish {
 
     @Override
     public Component getName(ItemStack pStack) {
-        return new TranslatableComponent("item.frozenfish.frozen", new TranslatableComponent(getOriginalFishStack().getDescriptionId()));
+        return Component.translatable("item.frozenfish.frozen", Component.translatable(getOriginalFishStack().getDescriptionId()));
     }
 
     @Override

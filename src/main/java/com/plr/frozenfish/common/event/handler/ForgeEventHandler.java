@@ -17,22 +17,23 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber
 public class ForgeEventHandler {
     @SubscribeEvent
     public static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-        final Level level = event.getWorld();
+        final Level level = event.getLevel();
         final BlockPos pos = event.getHitVec().getBlockPos();
         if (!level.getBlockState(pos).is(BlockTags.ICE)) return;
-        final Player player = event.getPlayer();
+        final Player player = event.getEntity();
         final ItemStack stack = player.getItemInHand(event.getHand());
         final Supplier<ItemStack> gen = FrozenFish.getFrozen().get(stack.getItem());
         if (gen == null) return;
         stack.shrink(1);
         level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS, 1.0F, .6F + player.getRandom().nextFloat(.6F));
+                SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS, 1.0F, .6F + ThreadLocalRandom.current().nextFloat(.6F));
         final ItemEntity i = new ItemEntity(level, player.getX(), player.getY(), player.getZ(), gen.get());
         level.addFreshEntity(i);
         if (!(player instanceof ServerPlayer p)) return;

@@ -15,6 +15,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public interface IFrozenFish {
     ItemStack getOriginalFishStack();
 
@@ -37,7 +39,7 @@ public interface IFrozenFish {
         else {
             stack.setDamageValue(0);
             level.playSound(null, user.getX(), user.getY(), user.getZ(),
-                    SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS, 1.0F, .6F + user.getRandom().nextFloat(.6F));
+                    SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS, 1.0F, .6F + ThreadLocalRandom.current().nextFloat(.6F));
         }
         return true;
     }
@@ -45,7 +47,7 @@ public interface IFrozenFish {
     default void dropDefrosted(LivingEntity e) {
         final ItemEntity ie = new ItemEntity(e.level, e.getX(), e.getY(), e.getZ(), getOriginalFishStack());
         e.level.playSound(null, e.getX(), e.getY(), e.getZ(),
-                SoundEvents.GLASS_BREAK, SoundSource.NEUTRAL, 1.0F, .6F + e.getRandom().nextFloat(.6F));
+                SoundEvents.GLASS_BREAK, SoundSource.NEUTRAL, 1.0F, .6F + ThreadLocalRandom.current().nextFloat(.6F));
         e.level.addFreshEntity(ie);
     }
 
@@ -67,7 +69,7 @@ public interface IFrozenFish {
         if (!level.getBlockState(pos).is(BlockTags.ICE)) return false;
         stack.setDamageValue(0);
         if (player != null) level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS, 1.0F, .6F + player.getRandom().nextFloat(.6F));
+                SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS, 1.0F, .6F + ThreadLocalRandom.current().nextFloat(.6F));
         return true;
     }
 }
