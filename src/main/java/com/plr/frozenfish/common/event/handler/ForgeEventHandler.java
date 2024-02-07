@@ -11,10 +11,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -44,11 +42,5 @@ public class ForgeEventHandler {
         final Advancement adv = server.getAdvancements().getAdvancement(new ResourceLocation(FrozenFish.MODID, "a_slow_witted_fish"));
         if (adv == null) return;
         p.getAdvancements().getOrStartProgress(adv).getRemainingCriteria().forEach(c -> p.getAdvancements().award(adv, c));
-    }
-
-    @SubscribeEvent
-    public static void onTab(BuildCreativeModeTabContentsEvent event) {
-        if (!event.getTabKey().equals(CreativeModeTabs.COMBAT)) return;
-        FrozenFish.getFrozen().values().forEach(s -> event.accept(s.get()));
     }
 }
