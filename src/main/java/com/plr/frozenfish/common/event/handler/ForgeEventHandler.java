@@ -1,7 +1,7 @@
 package com.plr.frozenfish.common.event.handler;
 
 import com.plr.frozenfish.FrozenFish;
-import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -39,7 +39,7 @@ public class ForgeEventHandler {
         if (!(player instanceof ServerPlayer p)) return;
         final MinecraftServer server = p.getServer();
         if (server == null) return;
-        final Advancement adv = server.getAdvancements().getAdvancement(new ResourceLocation(FrozenFish.MODID, "a_slow_witted_fish"));
+        final AdvancementHolder adv = server.getAdvancements().get(new ResourceLocation(FrozenFish.MODID, "a_slow_witted_fish"));
         if (adv == null) return;
         p.getAdvancements().getOrStartProgress(adv).getRemainingCriteria().forEach(c -> p.getAdvancements().award(adv, c));
     }
